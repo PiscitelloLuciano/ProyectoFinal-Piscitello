@@ -1,0 +1,11 @@
+<div class="my-5">
+  <button (click)="onCreateUser()" mat-raised-button color="accent">
+    <mat-icon>add</mat-icon>Crear Usuario
+  </button>
+</div>
+<app-users-table
+  [dataSource]="users"
+  (deleteUser)="onDeleteUser($event)"
+  (editUser)="onEditUser($event)"
+>
+</app-users-table>
