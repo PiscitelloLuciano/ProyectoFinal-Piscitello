@@ -1,0 +1,11 @@
+<h1 class="flex justify-content-center">Cursos</h1>
+<div class="my-5">
+  <button mat-raised-button color="accent" (click)="onCreateCourse()">
+    <mat-icon>add</mat-icon>Crear Curso
+  </button>
+</div>
+<app-courses-table
+  [dataSource]="(courses | async) || []"
+  (deleteCourse)="onDeleteCourse($event)"
+  (editCourse)="onEditCourse($event)"
+></app-courses-table>

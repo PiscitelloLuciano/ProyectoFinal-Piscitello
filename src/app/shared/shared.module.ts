@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
 })
 export class SharedModule {}

@@ -1,10 +1,11 @@
+<h1 class="flex justify-content-center">Usuarios</h1>
 <div class="my-5">
   <button (click)="onCreateUser()" mat-raised-button color="accent">
     <mat-icon>add</mat-icon>Crear Usuario
   </button>
 </div>
 <app-users-table
-  [dataSource]="users"
+  [dataSource]="(users | async) || []"
   (deleteUser)="onDeleteUser($event)"
   (editUser)="onEditUser($event)"
 >

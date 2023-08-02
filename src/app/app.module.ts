@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { StudentsModule } from './dashboard/pages/students/students.module';
+import { CoursesModule } from './dashboard/pages/courses/courses.module';
+import { ClassesModule } from './dashboard/pages/classes/classes.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +15,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DashboardModule,
+    CoursesModule,
+    ClassesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
