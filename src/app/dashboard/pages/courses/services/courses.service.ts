@@ -1,23 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { ICourses } from '../models';
-
-const COURSES_DB: Observable<ICourses[]> = of([
-  {
-    id: 1,
-    name: 'Angular',
-    description: 'Curso de Angular',
-    startDate: '2023/09/01',
-    endDate: '2023/11/01',
-  },
-  {
-    id: 2,
-    name: 'React',
-    description: 'Curso de React',
-    startDate: '2023/09/01',
-    endDate: '2023/11/01',
-  },
-]);
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -25,11 +9,13 @@ const COURSES_DB: Observable<ICourses[]> = of([
 export class CoursesService {
   private _courses$ = new BehaviorSubject<ICourses[]>([]);
   private courses$ = this._courses$.asObservable();
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   loadCourses(): void {
-    COURSES_DB.subscribe({
-      next: (courseFromDB) => this._courses$.next(courseFromDB),
+    this.http.get<ICourses[]>('http://localhost:3000/courses').subscribe({
+      next: (payload) => {
+        this._courses$.next(payload);
+      },
     });
   }
 
@@ -44,31 +30,26 @@ export class CoursesService {
     );
   }
 
-  createCourse(course: ICourses): void {
-    this.courses$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._courses$.next([
-          ...arrayActual,
-          { ...course, id: arrayActual.length + 1 },
-        ]);
+  createCourse(payload: ICourses): void {
+    this.http.post('http://localhost:3000/courses', payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadCourses();
       },
     });
   }
 
-  updateCourse(id: number, course: ICourses): void {
-    this.courses$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._courses$.next(
-          v.map((u) => (u.id === id ? { ...u, ...course } : u))
-        );
+  updateCourse(id: number, payload: ICourses): void {
+    this.http.put('http://localhost:3000/courses/' + id, payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadCourses();
       },
     });
   }
 
   deleteCourse(id: number): void {
-    this._courses$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._courses$.next(v.filter((u) => u.id !== id));
+    this.http.delete('http://localhost:3000/courses/' + id).subscribe({
+      next: (arrayActualizado) => {
+        this.loadCourses();
       },
     });
   }

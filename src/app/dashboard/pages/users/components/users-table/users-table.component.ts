@@ -7,13 +7,7 @@ import { IUser } from '../../models';
   styleUrls: ['./users-table.component.scss'],
 })
 export class UsersTableComponent {
-  displayedColumns: string[] = [
-    'id',
-    'name surname',
-    'email',
-    'dni',
-    'actions',
-  ];
+  displayedColumns: string[] = ['id', 'name surname', 'email', 'actions'];
 
   @Input()
   dataSource: IUser[] = [];

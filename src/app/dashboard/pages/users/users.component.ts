@@ -28,7 +28,7 @@ export class UsersComponent {
               name: v.name,
               surname: v.surname,
               email: v.email,
-              dni: v.dni,
+              password: v.password,
             });
           }
         },

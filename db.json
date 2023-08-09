@@ -1,0 +1,78 @@
+{
+  "users": [
+    {
+      "name": "Benito",
+      "surname": "Perez",
+      "email": "BenitoPerez@gmail.com",
+      "password": "36021888",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Kira",
+      "surname": "Fito",
+      "email": "Kfito@gmail.com",
+      "password": "40865956"
+    },
+    {
+      "id": 3,
+      "name": "Pecesito",
+      "surname": "Fizz",
+      "email": "Fizz@lol.com",
+      "password": "45589231"
+    }
+  ],
+  "students": [
+    {
+      "name": "Juan Pablo",
+      "surname": "Pebes",
+      "dateRegister": "2005-02-21",
+      "id": 1
+    },
+    {
+      "name": "Gonzalo",
+      "surname": "Gazir",
+      "dateRegister": "2000-10-29",
+      "id": 2
+    },
+    {
+      "name": "Juana",
+      "surname": "Jey",
+      "dateRegister": "2010-04-30",
+      "id": 3
+    }
+  ],
+  "classes": [
+    {
+      "id": 1,
+      "name": "RXJS",
+      "description": "Pico más alto de dificultad"
+    },
+    {
+      "id": 2,
+      "name": "Routing",
+      "description": "Conecta tu aplicación por medio de URLs"
+    },
+    {
+      "id": 3,
+      "name": "Form",
+      "description": "Formularios Reactivos con Angular"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "description": "Curso de Angular",
+      "startDate": "2023/09/01",
+      "endDate": "2023/11/01"
+    },
+    {
+      "id": 2,
+      "name": "React",
+      "description": "Curso de React",
+      "startDate": "2023/09/01",
+      "endDate": "2023/11/01"
+    }
+  ]
+}

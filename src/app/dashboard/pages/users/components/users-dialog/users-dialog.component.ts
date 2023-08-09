@@ -21,7 +21,7 @@ export class UsersDialogComponent {
     Validators.required,
     Validators.email,
   ]);
-  dniControl = new FormControl<string>('', [
+  passwordControl = new FormControl<string>('', [
     Validators.required,
     Validators.minLength(7),
   ]);
@@ -30,7 +30,7 @@ export class UsersDialogComponent {
     name: this.nameControl,
     surname: this.surnameControl,
     email: this.emailControl,
-    dni: this.dniControl,
+    password: this.passwordControl,
   });
 
   constructor(
@@ -41,7 +41,7 @@ export class UsersDialogComponent {
       this.nameControl.setValue(this.data.name);
       this.surnameControl.setValue(this.data.surname);
       this.emailControl.setValue(this.data.email);
-      this.dniControl.setValue(this.data.dni);
+      this.passwordControl.setValue(this.data.password);
     }
   }
 

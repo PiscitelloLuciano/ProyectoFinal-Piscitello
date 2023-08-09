@@ -1,27 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
 import { IStudent } from '../models';
-
-const STUDENTS_DB: Observable<IStudent[]> = of([
-  {
-    id: 1,
-    name: 'Jose',
-    surname: 'Fernandez',
-    dateRegister: '30 de Noviembre',
-  },
-  {
-    id: 2,
-    name: 'Kira',
-    surname: 'Fito',
-    dateRegister: '1 de Marzo',
-  },
-  {
-    id: 3,
-    name: 'Pecesito',
-    surname: 'Fizz',
-    dateRegister: '16 de Febrero',
-  },
-]);
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -29,11 +9,13 @@ const STUDENTS_DB: Observable<IStudent[]> = of([
 export class StudentService {
   private _students$ = new BehaviorSubject<IStudent[]>([]);
   private students$ = this._students$.asObservable();
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   loadStudents(): void {
-    STUDENTS_DB.subscribe({
-      next: (studentFromDB) => this._students$.next(studentFromDB),
+    this.http.get<IStudent[]>('http://localhost:3000/students').subscribe({
+      next: (arrayActualizado) => {
+        this._students$.next(arrayActualizado);
+      },
     });
   }
 
@@ -48,31 +30,26 @@ export class StudentService {
     );
   }
 
-  createStudent(student: IStudent): void {
-    this.students$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._students$.next([
-          ...arrayActual,
-          { ...student, id: arrayActual.length + 1 },
-        ]);
+  createStudent(payload: IStudent): void {
+    this.http.post('http://localhost:3000/students', payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadStudents();
       },
     });
   }
 
-  updateStudent(id: number, student: IStudent): void {
-    this.students$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._students$.next(
-          v.map((u) => (u.id === id ? { ...u, ...student } : u))
-        );
+  updateStudent(id: number, payload: IStudent): void {
+    this.http.put('http://localhost:3000/students/' + id, payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadStudents();
       },
     });
   }
 
   deleteStudent(id: number): void {
-    this._students$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._students$.next(v.filter((u) => u.id !== id));
+    this.http.delete('http://localhost:3000/students/' + id).subscribe({
+      next: (arrayActualizado) => {
+        this.loadStudents();
       },
     });
   }

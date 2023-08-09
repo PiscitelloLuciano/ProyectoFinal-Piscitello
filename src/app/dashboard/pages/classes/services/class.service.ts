@@ -1,24 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { IClass } from '../models';
-
-const CLASS_DB: Observable<IClass[]> = of([
-  {
-    id: 1,
-    name: 'RXJS',
-    description: 'Pico más alto de dificultad',
-  },
-  {
-    id: 2,
-    name: 'Routing',
-    description: 'Conecta tu aplicación por medio de URLs',
-  },
-  {
-    id: 3,
-    name: 'Form',
-    description: 'Formularios Reactivos con Angular',
-  },
-]);
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -26,11 +9,13 @@ const CLASS_DB: Observable<IClass[]> = of([
 export class ClassService {
   private _classes$ = new BehaviorSubject<IClass[]>([]);
   private classes$ = this._classes$.asObservable();
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   loadClasses(): void {
-    CLASS_DB.subscribe({
-      next: (classesFromDB) => this._classes$.next(classesFromDB),
+    this.http.get<IClass[]>('http://localhost:3000/classes').subscribe({
+      next: (payload) => {
+        this._classes$.next(payload);
+      },
     });
   }
 
@@ -45,31 +30,26 @@ export class ClassService {
     );
   }
 
-  createClasses(classes: IClass): void {
-    this.classes$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._classes$.next([
-          ...arrayActual,
-          { ...classes, id: arrayActual.length + 1 },
-        ]);
+  createClasses(payload: IClass): void {
+    this.http.post('http://localhost:3000/classes', payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadClasses();
       },
     });
   }
 
-  updateClasses(id: number, classes: IClass): void {
-    this.classes$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._classes$.next(
-          v.map((u) => (u.id === id ? { ...u, ...classes } : u))
-        );
+  updateClasses(id: number, payload: IClass): void {
+    this.http.put('http://localhost:3000/classes/' + id, payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadClasses();
       },
     });
   }
 
   deleteClasses(id: number): void {
-    this._classes$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._classes$.next(v.filter((u) => u.id !== id));
+    this.http.delete('http://localhost:3000/classes/' + id).subscribe({
+      next: (arrayActualizado) => {
+        this.loadClasses();
       },
     });
   }

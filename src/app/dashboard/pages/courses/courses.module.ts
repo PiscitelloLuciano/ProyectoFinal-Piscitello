@@ -5,6 +5,7 @@ import { CoursesDialogComponent } from './components/courses-dialog/courses-dial
 import { CoursesTableComponent } from './components/courses-table/courses-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,6 @@ import { MatTableModule } from '@angular/material/table';
     CoursesDialogComponent,
     CoursesTableComponent,
   ],
-  imports: [CommonModule, SharedModule, MatTableModule],
+  imports: [CommonModule, SharedModule, MatTableModule, CoursesRoutingModule],
 })
 export class CoursesModule {}

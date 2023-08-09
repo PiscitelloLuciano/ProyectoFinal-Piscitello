@@ -11,7 +11,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   imports: [
     CommonModule,
     ToolbarModule,
-    UsersModule,
     MatSidenavModule,
     DashboardRoutingModule,
   ],

@@ -1,30 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, of, take } from 'rxjs';
 import { IUser } from '../models';
-
-const USER_DB: Observable<IUser[]> = of([
-  {
-    id: 1,
-    name: 'Benito',
-    surname: 'Perez',
-    email: 'BPerez3@gmail.com',
-    dni: '36021888',
-  },
-  {
-    id: 2,
-    name: 'Kira',
-    surname: 'Fito',
-    email: 'Kfito@gmail.com',
-    dni: '40865956',
-  },
-  {
-    id: 3,
-    name: 'Pecesito',
-    surname: 'Fizz',
-    email: 'Fizz@lol.com',
-    dni: '45589231',
-  },
-]);
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +9,13 @@ const USER_DB: Observable<IUser[]> = of([
 export class UserService {
   private _users$ = new BehaviorSubject<IUser[]>([]);
   private users$ = this._users$.asObservable();
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   loadUsers(): void {
-    USER_DB.subscribe({
-      next: (userFromDB) => this._users$.next(userFromDB),
+    this.http.get<IUser[]>('http://localhost:3000/users').subscribe({
+      next: (payload) => {
+        this._users$.next(payload);
+      },
     });
   }
 
@@ -51,29 +30,26 @@ export class UserService {
     );
   }
 
-  createUser(user: IUser): void {
-    this.users$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._users$.next([
-          ...arrayActual,
-          { ...user, id: arrayActual.length + 1 },
-        ]);
+  createUser(payload: IUser): void {
+    this.http.post('http://localhost:3000/users', payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadUsers();
       },
     });
   }
 
-  updateUser(id: number, user: IUser): void {
-    this.users$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._users$.next(v.map((u) => (u.id === id ? { ...u, ...user } : u)));
+  updateUser(id: number, payload: IUser): void {
+    this.http.put('http://localhost:3000/users/' + id, payload).subscribe({
+      next: (arrayActualizado) => {
+        this.loadUsers();
       },
     });
   }
 
   deleteUser(id: number): void {
-    this._users$.pipe(take(1)).subscribe({
-      next: (v) => {
-        this._users$.next(v.filter((u) => u.id !== id));
+    this.http.delete('http://localhost:3000/users/' + id).subscribe({
+      next: (arrayActualizado) => {
+        this.loadUsers();
       },
     });
   }

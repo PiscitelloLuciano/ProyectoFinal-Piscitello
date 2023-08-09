@@ -1,14 +1,11 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { StudentsComponent } from './pages/students/students.component';
-import { CoursesComponent } from './pages/courses/courses.component';
-import { ClassesComponent } from './pages/classes/classes.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'users',
@@ -17,15 +14,18 @@ const routes: Routes = [
   },
   {
     path: 'students',
-    component: StudentsComponent,
+    loadChildren: () =>
+      import('./pages/students/students.module').then((m) => m.StudentsModule),
   },
   {
     path: 'courses',
-    component: CoursesComponent,
+    loadChildren: () =>
+      import('./pages/courses/courses.module').then((m) => m.CoursesModule),
   },
   {
     path: 'classes',
-    component: ClassesComponent,
+    loadChildren: () =>
+      import('./pages/classes/classes.module').then((m) => m.ClassesModule),
   },
   {
     path: '**',
