@@ -20,6 +20,13 @@
       "surname": "Fizz",
       "email": "Fizz@lol.com",
       "password": "45589231"
+    },
+    {
+      "name": "Leonel",
+      "surname": "Messi",
+      "email": "elgoat@gmail.com",
+      "password": "mundial2022",
+      "id": 5
     }
   ],
   "students": [
