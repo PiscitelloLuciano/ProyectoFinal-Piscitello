@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  public emailControl = new FormControl('Fizz@lol.com', [
+  public emailControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  public passwordControl = new FormControl('45589231', [
+  public passwordControl = new FormControl('', [
     Validators.required,
     Validators.minLength(7),
   ]);

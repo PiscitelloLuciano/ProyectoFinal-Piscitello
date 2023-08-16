@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
 import { IStudent } from '../models';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class StudentService {
   constructor(private http: HttpClient) {}
 
   loadStudents(): void {
-    this.http.get<IStudent[]>('http://localhost:3000/students').subscribe({
+    this.http.get<IStudent[]>(environment.baseApiUrl + '/students').subscribe({
       next: (arrayActualizado) => {
         this._students$.next(arrayActualizado);
       },
@@ -31,7 +32,7 @@ export class StudentService {
   }
 
   createStudent(payload: IStudent): void {
-    this.http.post('http://localhost:3000/students', payload).subscribe({
+    this.http.post(environment.baseApiUrl + '/students', payload).subscribe({
       next: (arrayActualizado) => {
         this.loadStudents();
       },
@@ -39,15 +40,17 @@ export class StudentService {
   }
 
   updateStudent(id: number, payload: IStudent): void {
-    this.http.put('http://localhost:3000/students/' + id, payload).subscribe({
-      next: (arrayActualizado) => {
-        this.loadStudents();
-      },
-    });
+    this.http
+      .put(environment.baseApiUrl + '/students/' + id, payload)
+      .subscribe({
+        next: (arrayActualizado) => {
+          this.loadStudents();
+        },
+      });
   }
 
   deleteStudent(id: number): void {
-    this.http.delete('http://localhost:3000/students/' + id).subscribe({
+    this.http.delete(environment.baseApiUrl + '/students/' + id).subscribe({
       next: (arrayActualizado) => {
         this.loadStudents();
       },

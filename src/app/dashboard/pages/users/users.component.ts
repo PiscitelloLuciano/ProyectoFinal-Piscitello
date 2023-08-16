@@ -29,6 +29,7 @@ export class UsersComponent {
               surname: v.surname,
               email: v.email,
               password: v.password,
+              token: v.token,
             });
           }
         },

@@ -38,6 +38,7 @@ describe('AuthService', () => {
       surname: 'fakeSurname',
       email: 'fake@fake.com',
       password: '123456789',
+      token: 'dGawRoKPPw38k5QxZm',
     };
 
     const mockResponse: IUser[] = [mockUser];

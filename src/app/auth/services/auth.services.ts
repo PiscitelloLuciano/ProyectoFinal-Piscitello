@@ -3,9 +3,11 @@ import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { IUser } from '../../dashboard/pages/users/models';
 import { NotifierService } from '../../core/services/notifier.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { loginData } from '../models';
 import { userRegister } from '../pages/register/models';
+import { environment } from 'src/environments/environments';
+import { generateRandomString } from 'src/app/core/utils/helpers';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -20,7 +22,7 @@ export class AuthService {
 
   login(payload: loginData): void {
     this.http
-      .get<IUser[]>('http://localhost:3000/users', {
+      .get<IUser[]>(environment.baseApiUrl + '/users', {
         params: {
           email: payload.email || '',
           password: payload.password || '',
@@ -29,25 +31,37 @@ export class AuthService {
       .subscribe({
         next: (response) => {
           if (response.length) {
-            this.authUser$.next(response[0]);
+            const authUser = response[0];
+            this.authUser$.next(authUser);
             this.router.navigate(['/dashboard']);
+            localStorage.setItem('token', authUser.token);
           } else {
-            this.notifier.showError('Email o contraseña inválido');
             this.authUser$.next(null);
+            this.notifier.showError('Email o contraseña inválido');
           }
+        },
+        error: (err) => {
+          this.notifier.showError('Ocurrió un error inesperado');
         },
       });
   }
 
   isAuthenticated(): Observable<boolean> {
-    return this.authUser$.pipe(
-      take(1),
-      map((user) => (user ? true : false))
-    );
+    return this.http
+      .get<IUser[]>(environment.baseApiUrl + '/users', {
+        params: {
+          token: localStorage.getItem('token') || '',
+        },
+      })
+      .pipe(
+        map((userResult) => {
+          return !!userResult.length;
+        })
+      );
   }
 
   loadUsers(): void {
-    this.http.get<IUser[]>('http://localhost:3000/users').subscribe({
+    this.http.get<IUser[]>(environment.baseApiUrl + '/users').subscribe({
       next: (payload) => {
         this._users$.next(payload);
       },
@@ -55,10 +69,13 @@ export class AuthService {
   }
 
   createUser(payload: userRegister): void {
-    this.http.post('http://localhost:3000/users', payload).subscribe({
-      next: (arrayActualizado) => {
-        this.loadUsers();
-      },
-    });
+    const token = generateRandomString(18);
+    this.http
+      .post(environment.baseApiUrl + '/users', { ...payload, token })
+      .subscribe({
+        next: (arrayActualizado) => {
+          this.loadUsers();
+        },
+      });
   }
 }

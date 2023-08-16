@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { ICourses } from '../models';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class CoursesService {
   constructor(private http: HttpClient) {}
 
   loadCourses(): void {
-    this.http.get<ICourses[]>('http://localhost:3000/courses').subscribe({
+    this.http.get<ICourses[]>(environment.baseApiUrl + '/courses').subscribe({
       next: (payload) => {
         this._courses$.next(payload);
       },
@@ -31,7 +32,7 @@ export class CoursesService {
   }
 
   createCourse(payload: ICourses): void {
-    this.http.post('http://localhost:3000/courses', payload).subscribe({
+    this.http.post(environment.baseApiUrl + '/courses', payload).subscribe({
       next: (arrayActualizado) => {
         this.loadCourses();
       },
@@ -39,15 +40,17 @@ export class CoursesService {
   }
 
   updateCourse(id: number, payload: ICourses): void {
-    this.http.put('http://localhost:3000/courses/' + id, payload).subscribe({
-      next: (arrayActualizado) => {
-        this.loadCourses();
-      },
-    });
+    this.http
+      .put(environment.baseApiUrl + '/courses/' + id, payload)
+      .subscribe({
+        next: (arrayActualizado) => {
+          this.loadCourses();
+        },
+      });
   }
 
   deleteCourse(id: number): void {
-    this.http.delete('http://localhost:3000/courses/' + id).subscribe({
+    this.http.delete(environment.baseApiUrl + '/courses/' + id).subscribe({
       next: (arrayActualizado) => {
         this.loadCourses();
       },

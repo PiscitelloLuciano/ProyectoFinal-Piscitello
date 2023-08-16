@@ -1,38 +1,50 @@
 {
   "users": [
     {
+      "id": 1,
       "name": "Benito",
       "surname": "Perez",
       "email": "BenitoPerez@gmail.com",
       "password": "36021888",
-      "id": 1
+      "token": "tEiY5ueuZdHNg3SZjk"
     },
     {
       "id": 2,
       "name": "Kira",
       "surname": "Fito",
       "email": "Kfito@gmail.com",
-      "password": "40865956"
+      "password": "40865956",
+      "token": "tPkY5uIlZdHNg3SZjk"
     },
     {
       "id": 3,
       "name": "Pecesito",
       "surname": "Fizz",
       "email": "Fizz@lol.com",
-      "password": "45589231"
+      "password": "45589231",
+      "token": "tEiY5uIlZdHN3LpZjk"
     },
     {
-      "name": "Leonel",
-      "surname": "Messi",
-      "email": "elgoat@gmail.com",
-      "password": "mundial2022",
+      "name": "User",
+      "surname": "User",
+      "email": "user@gmail.com",
+      "password": "user123",
+      "token": "M9Xuxp34wq21VHqu9k",
+      "id": 4
+    },
+    {
+      "name": "Admin",
+      "surname": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "token": "2slF8zmd2Jfo5Uq2I8",
       "id": 5
     }
   ],
   "students": [
     {
       "name": "Juan Pablo",
-      "surname": "Pebes",
+      "surname": "Gonzalez",
       "dateRegister": "2005-02-21",
       "id": 1
     },
