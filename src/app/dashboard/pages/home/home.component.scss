@@ -1,0 +1,37 @@
+.container {
+  position: relative;
+  max-width: 100%;
+}
+
+.background-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.title {
+  color: #ffc400;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-shadow: black 3px 3px 2px;
+  font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+  .texto {
+    font-size: 20px;
+  }
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: #004d40;
+  color: white;
+  transition: 0.8s;
+}

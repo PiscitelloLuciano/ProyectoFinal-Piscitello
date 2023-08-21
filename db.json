@@ -39,6 +39,14 @@
       "password": "admin123",
       "token": "2slF8zmd2Jfo5Uq2I8",
       "id": 5
+    },
+    {
+      "name": "Brisa Celeste",
+      "surname": "Burgos",
+      "email": "brisaburgos@gmail.com",
+      "password": "oshiteamo",
+      "token": "yp7jncEV8saKejVLWd",
+      "id": 6
     }
   ],
   "students": [
