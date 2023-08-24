@@ -30,6 +30,7 @@ export class UsersComponent {
               email: v.email,
               password: v.password,
               token: v.token,
+              rol: v.rol,
             });
           }
         },
@@ -37,7 +38,7 @@ export class UsersComponent {
   }
 
   onDeleteUser(user: IUser): void {
-    if (confirm(`¿Está seguro de eliminar a ${user.name}?`) && user.id) {
+    if (user.id) {
       this.serv.deleteUser(user.id);
     }
   }

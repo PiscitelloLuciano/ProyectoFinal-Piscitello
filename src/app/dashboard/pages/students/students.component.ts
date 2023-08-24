@@ -4,6 +4,8 @@ import { IStudent } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentService } from './services/student.service';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
+import { Store } from '@ngrx/store';
+import { selectIsAdmin } from 'src/app/store/auth/auth.selector';
 
 @Component({
   selector: 'app-students',
@@ -12,9 +14,15 @@ import { StudentsDialogComponent } from './components/students-dialog/students-d
 })
 export class StudentsComponent {
   public students: Observable<IStudent[]>;
-  constructor(private matDialog: MatDialog, private serv: StudentService) {
+  public isAdmin$: Observable<boolean>;
+  constructor(
+    private matDialog: MatDialog,
+    private serv: StudentService,
+    private store: Store
+  ) {
     this.serv.loadStudents();
     this.students = this.serv.getStudents();
+    this.isAdmin$ = this.store.select(selectIsAdmin);
   }
 
   onCreateStudent(): void {

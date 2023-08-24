@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICourses } from '../../models';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectIsAdmin } from 'src/app/store/auth/auth.selector';
 
 @Component({
   selector: 'app-courses-table',
@@ -7,6 +10,7 @@ import { ICourses } from '../../models';
   styleUrls: ['./courses-table.component.scss'],
 })
 export class CoursesTableComponent {
+  public isAdmin$: Observable<boolean>;
   public displayedColumns = [
     'id',
     'name',
@@ -15,6 +19,10 @@ export class CoursesTableComponent {
     'endDate',
     'actions',
   ];
+
+  constructor(private store: Store) {
+    this.isAdmin$ = this.store.select(selectIsAdmin);
+  }
 
   @Input()
   dataSource: ICourses[] = [];

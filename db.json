@@ -1,52 +1,31 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Benito",
-      "surname": "Perez",
-      "email": "BenitoPerez@gmail.com",
-      "password": "36021888",
-      "token": "tEiY5ueuZdHNg3SZjk"
-    },
-    {
-      "id": 2,
-      "name": "Kira",
-      "surname": "Fito",
-      "email": "Kfito@gmail.com",
-      "password": "40865956",
-      "token": "tPkY5uIlZdHNg3SZjk"
-    },
-    {
-      "id": 3,
-      "name": "Pecesito",
-      "surname": "Fizz",
-      "email": "Fizz@lol.com",
-      "password": "45589231",
-      "token": "tEiY5uIlZdHN3LpZjk"
-    },
-    {
-      "name": "User",
-      "surname": "User",
+      "name": "user",
+      "surname": "user",
       "email": "user@gmail.com",
       "password": "user123",
-      "token": "M9Xuxp34wq21VHqu9k",
-      "id": 4
-    },
-    {
-      "name": "Admin",
-      "surname": "Admin",
-      "email": "admin@gmail.com",
-      "password": "admin123",
-      "token": "2slF8zmd2Jfo5Uq2I8",
-      "id": 5
+      "token": "wU84z1hclXzqcRMu0r",
+      "rol": "user",
+      "id": 3
     },
     {
       "name": "Brisa Celeste",
       "surname": "Burgos",
       "email": "brisaburgos@gmail.com",
       "password": "oshiteamo",
-      "token": "yp7jncEV8saKejVLWd",
-      "id": 6
+      "token": "JR97bnTL6Y3ZBNyoJW",
+      "rol": "admin",
+      "id": 4
+    },
+    {
+      "name": "admin",
+      "surname": "admin",
+      "email": "admin@gmail.com",
+      "rol": "admin",
+      "password": "admin123",
+      "token": "rSz0N8BpYJtl2EntBF",
+      "id": 5
     }
   ],
   "students": [

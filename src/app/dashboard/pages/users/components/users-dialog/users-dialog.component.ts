@@ -9,19 +9,20 @@ import { IUser } from '../../models';
   styleUrls: ['./users-dialog.component.scss'],
 })
 export class UsersDialogComponent {
-  nameControl = new FormControl<string>('', [
+  nameControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(2),
   ]);
-  surnameControl = new FormControl<string>('', [
+  surnameControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(2),
   ]);
-  emailControl = new FormControl<string>('', [
+  emailControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.email,
   ]);
-  passwordControl = new FormControl<string>('', [
+  rolControl = new FormControl<string | null>(null, [Validators.required]);
+  passwordControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(7),
   ]);
@@ -30,6 +31,7 @@ export class UsersDialogComponent {
     name: this.nameControl,
     surname: this.surnameControl,
     email: this.emailControl,
+    rol: this.rolControl,
     password: this.passwordControl,
   });
 
@@ -42,6 +44,7 @@ export class UsersDialogComponent {
       this.surnameControl.setValue(this.data.surname);
       this.emailControl.setValue(this.data.email);
       this.passwordControl.setValue(this.data.password);
+      this.rolControl.setValue(this.data.rol);
     }
   }
 

@@ -1,6 +1,11 @@
 <h1 class="flex justify-content-center">Estudiantes</h1>
 <div class="my-5">
-  <button mat-raised-button color="accent" (click)="onCreateStudent()">
+  <button
+    *ngIf="isAdmin$ | async"
+    mat-raised-button
+    color="accent"
+    (click)="onCreateStudent()"
+  >
     <mat-icon>add</mat-icon>Crear Estudiante
   </button>
 </div>

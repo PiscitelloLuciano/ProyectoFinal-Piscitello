@@ -4,6 +4,8 @@ import { IUser } from '../models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generateRandomString } from 'src/app/core/utils/helpers';
 import { environment } from 'src/environments/environments';
+import Swal from 'sweetalert2';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Injectable({
   providedIn: 'root',
@@ -61,10 +63,24 @@ export class UserService {
   }
 
   deleteUser(id: number): void {
-    this.http.delete(environment.baseApiUrl + '/users/' + id).subscribe({
-      next: (arrayActualizado) => {
-        this.loadUsers();
-      },
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'Se borrará permanentemente de tu web',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Eliminado', `Ha sido eliminado con exito`, 'success');
+        this.http.delete(environment.baseApiUrl + '/users/' + id).subscribe({
+          next: (arrayActualizado) => {
+            this.loadUsers();
+          },
+        });
+      }
     });
   }
 }

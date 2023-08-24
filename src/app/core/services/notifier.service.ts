@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { IUser } from 'src/app/dashboard/pages/users/models';
+import { UserService } from 'src/app/dashboard/pages/users/services/user.service';
 import Swal from 'sweetalert2';
 
 interface myCustomNotification {
-  type: 'success' | 'error' | 'info';
   title: string;
   text: string;
+  type: 'success' | 'error' | 'info';
 }
 
 @Injectable({
@@ -13,7 +15,7 @@ interface myCustomNotification {
 })
 export class NotifierService {
   private notifier$ = new Subject<myCustomNotification>();
-  constructor() {
+  constructor(private serv: UserService) {
     this.notifier$.subscribe({
       next: (myNotification) => {
         Swal.fire(

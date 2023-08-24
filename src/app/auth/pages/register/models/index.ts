@@ -3,4 +3,5 @@ export interface userRegister {
   surname: string | null;
   email: string | null;
   password: string | null;
+  rol: string | null;
 }

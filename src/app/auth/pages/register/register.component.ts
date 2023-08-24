@@ -12,19 +12,20 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  nameControl = new FormControl<string>('', [
+  nameControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(2),
   ]);
-  surnameControl = new FormControl<string>('', [
+  surnameControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(2),
   ]);
-  emailControl = new FormControl<string>('', [
+  emailControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.email,
   ]);
-  passwordControl = new FormControl<string>('', [
+  rolControl = new FormControl<string | null>(null, []);
+  passwordControl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(7),
   ]);
@@ -34,6 +35,7 @@ export class RegisterComponent {
     surname: this.surnameControl,
     email: this.emailControl,
     password: this.passwordControl,
+    rol: this.rolControl,
   });
 
   constructor(
@@ -51,6 +53,7 @@ export class RegisterComponent {
         surname: v.surname,
         email: v.email,
         password: v.password,
+        rol: 'user',
       });
       this.router.navigate(['auth/login']);
     }

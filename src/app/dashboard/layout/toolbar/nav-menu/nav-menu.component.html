@@ -1,7 +1,7 @@
 <mat-nav-list>
   <a routerLink="home" mat-list-item>Inicio</a>
-  <a mat-list-item routerLink="users">Usuarios</a>
+  <a *ngIf="isAdmin$ | async" routerLink="users" mat-list-item>Usuarios</a>
   <a mat-list-item routerLink="students">Estudiantes</a>
   <a mat-list-item routerLink="courses">Cursos</a>
-  <a mat-list-item routerLink="/auth">Cerrar Sesion</a>
+  <a mat-list-item (click)="logOut()">Cerrar Sesion</a>
 </mat-nav-list>

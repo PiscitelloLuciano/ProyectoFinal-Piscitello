@@ -8,19 +8,22 @@ import { loginData } from '../models';
 import { userRegister } from '../pages/register/models';
 import { environment } from 'src/environments/environments';
 import { generateRandomString } from 'src/app/core/utils/helpers';
+import { Store } from '@ngrx/store';
+import { AuthActions } from 'src/app/store/auth/auth.actions';
+import { UsersComponent } from 'src/app/dashboard/pages/users/users.component';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public authUser$ = new BehaviorSubject<IUser | null>(null);
   private _users$ = new BehaviorSubject<IUser[]>([]);
 
   constructor(
     private notifier: NotifierService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private store: Store
   ) {}
 
-  login(payload: loginData): void {
+  public login(payload: loginData): void {
     this.http
       .get<IUser[]>(environment.baseApiUrl + '/users', {
         params: {
@@ -32,11 +35,14 @@ export class AuthService {
         next: (response) => {
           if (response.length) {
             const authUser = response[0];
-            this.authUser$.next(authUser);
+            this.store.dispatch(
+              AuthActions.setAuthUser({
+                payload: authUser,
+              })
+            );
             this.router.navigate(['/dashboard']);
             localStorage.setItem('token', authUser.token);
           } else {
-            this.authUser$.next(null);
             this.notifier.showError('Email o contraseña inválido');
           }
         },
@@ -46,7 +52,7 @@ export class AuthService {
       });
   }
 
-  isAuthenticated(): Observable<boolean> {
+  public isAuthenticated(): Observable<boolean> {
     return this.http
       .get<IUser[]>(environment.baseApiUrl + '/users', {
         params: {
@@ -55,12 +61,20 @@ export class AuthService {
       })
       .pipe(
         map((userResult) => {
+          if (UsersComponent.length) {
+            const authUser = userResult[0];
+            this.store.dispatch(
+              AuthActions.setAuthUser({
+                payload: authUser,
+              })
+            );
+          }
           return !!userResult.length;
         })
       );
   }
 
-  loadUsers(): void {
+  public loadUsers(): void {
     this.http.get<IUser[]>(environment.baseApiUrl + '/users').subscribe({
       next: (payload) => {
         this._users$.next(payload);
@@ -68,7 +82,7 @@ export class AuthService {
     });
   }
 
-  createUser(payload: userRegister): void {
+  public createUser(payload: userRegister): void {
     const token = generateRandomString(18);
     this.http
       .post(environment.baseApiUrl + '/users', { ...payload, token })
@@ -77,5 +91,13 @@ export class AuthService {
           this.loadUsers();
         },
       });
+  }
+
+  public logOut(): void {
+    this.store.dispatch(
+      AuthActions.setAuthUser({
+        payload: null,
+      })
+    );
   }
 }
