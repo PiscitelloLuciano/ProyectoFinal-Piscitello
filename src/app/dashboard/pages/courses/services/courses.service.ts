@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { ICourses } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environments';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -24,11 +25,12 @@ export class CoursesService {
     return this.courses$;
   }
 
-  getCourseById(id: number) {
-    return this.courses$.pipe(
-      take(1),
-      map((courses) => courses.find((u) => u.id === id))
-    );
+  getCourseById(id: number): Observable<ICourses> {
+    return this.http.get<ICourses>(environment.baseApiUrl + '/courses/' + id);
+  }
+
+  getCourseOptions(): Observable<ICourses[]> {
+    return this.http.get<ICourses[]>(environment.baseApiUrl + '/courses');
   }
 
   createCourse(payload: ICourses): void {
@@ -50,10 +52,24 @@ export class CoursesService {
   }
 
   deleteCourse(id: number): void {
-    this.http.delete(environment.baseApiUrl + '/courses/' + id).subscribe({
-      next: (arrayActualizado) => {
-        this.loadCourses();
-      },
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'Se borrará permanentemente',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Eliminado', `Ha sido eliminado con exito`, 'success');
+        this.http.delete(environment.baseApiUrl + '/courses/' + id).subscribe({
+          next: (arrayActualizado) => {
+            this.loadCourses();
+          },
+        });
+      }
     });
   }
 }

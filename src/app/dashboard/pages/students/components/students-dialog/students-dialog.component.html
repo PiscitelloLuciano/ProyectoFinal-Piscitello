@@ -1,7 +1,7 @@
 <div class="modal p-4">
   <h1>Nuevo Estudiante</h1>
   <form [formGroup]="studentForm" class="grid form">
-    <div class="field col-12">
+    <div class="field col-6">
       <mat-form-field class="w-full">
         <mat-label>Nombre</mat-label>
         <input matInput type="text" name="name" formControlName="name" />
@@ -14,7 +14,7 @@
       </mat-form-field>
     </div>
 
-    <div class="field col-12">
+    <div class="field col-6">
       <mat-form-field class="w-full">
         <mat-label>Apellido</mat-label>
         <input matInput type="text" name="surname" formControlName="surname" />
@@ -27,7 +27,44 @@
       </mat-form-field>
     </div>
 
-    <div class="field col-12">
+    <div class="field col-6">
+      <mat-form-field class="w-full">
+        <mat-label>Descripción</mat-label>
+        <input
+          matInput
+          type="text"
+          name="description"
+          formControlName="description"
+        />
+        <mat-error *ngIf="descriptionControl.hasError('required')">
+          Este campo es requerido
+        </mat-error>
+        <mat-error *ngIf="descriptionControl.hasError('minlength')"
+          >Debe contener al menos 15 caracteres.
+        </mat-error>
+        <mat-error *ngIf="descriptionControl.hasError('maxlength')"
+          >Puede contener un máximo de 256 caracteres
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field col-6">
+      <mat-form-field class="w-full">
+        <mat-label>Dni</mat-label>
+        <input matInput type="number" name="dni" formControlName="dni" />
+        <mat-error *ngIf="dniControl.hasError('required')">
+          Este campo es requerido
+        </mat-error>
+        <mat-error *ngIf="dniControl.hasError('min')"
+          >El valor mínimo es de 1,000,000.
+        </mat-error>
+        <mat-error *ngIf="dniControl.hasError('max')"
+          >El valor máximo es de 99,999,999
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field col-6">
       <mat-form-field class="w-full">
         <mat-label>Fecha de registro</mat-label>
         <input
@@ -45,7 +82,30 @@
             dateRegisterControl.hasError('maxlength')
           "
         >
-          Este campo solo puede contener 8 caracteres.
+          Este campo solo puede contener 10 caracteres.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field col-6">
+      <mat-form-field class="w-full">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input
+          matInput
+          type="date"
+          name="birthAge"
+          formControlName="birthAge"
+        />
+        <mat-error *ngIf="birthAgeControl.hasError('required')">
+          Este campo es requerido
+        </mat-error>
+        <mat-error
+          *ngIf="
+            birthAgeControl.hasError('minlength') ||
+            birthAgeControl.hasError('maxlength')
+          "
+        >
+          Este campo solo puede contener 10 caracteres.
         </mat-error>
       </mat-form-field>
     </div>

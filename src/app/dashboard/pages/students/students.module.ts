@@ -6,12 +6,14 @@ import { StudentsTableComponent } from './components/students-table/students-tab
 import { MatTableModule } from '@angular/material/table';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { StudentsRoutingModule } from './students-routing.module';
+import { StudentsDetailComponent } from './pages/students-detail/students-detail.component';
 
 @NgModule({
   declarations: [
     StudentsComponent,
     StudentsTableComponent,
     StudentsDialogComponent,
+    StudentsDetailComponent,
   ],
   imports: [CommonModule, SharedModule, MatTableModule, StudentsRoutingModule],
 })

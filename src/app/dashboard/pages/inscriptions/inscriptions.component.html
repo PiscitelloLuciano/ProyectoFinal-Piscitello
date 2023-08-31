@@ -1,0 +1,9 @@
+<h1 class="flex justify-content-center">Inscripciones</h1>
+<div class="my-5">
+  <button (click)="onAdd()" mat-raised-button color="accent">
+    <mat-icon>add</mat-icon>Crear Inscripción
+  </button>
+</div>
+<app-inscriptions-table
+  [dataSource]="(inscriptions$ | async) || []"
+></app-inscriptions-table>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { adminGuard } from '../core/guards/admin.guard';
+import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,13 @@ const routes: Routes = [
     path: 'courses',
     loadChildren: () =>
       import('./pages/courses/courses.module').then((m) => m.CoursesModule),
+  },
+  {
+    path: 'inscriptions',
+    loadChildren: () =>
+      import('./pages/inscriptions/inscriptions.module').then(
+        (m) => m.InscriptionsModule
+      ),
   },
   {
     path: '**',

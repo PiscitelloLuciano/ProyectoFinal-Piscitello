@@ -33,11 +33,8 @@ export class UserService {
     return this.users$;
   }
 
-  getUserById(id: number) {
-    return this.users$.pipe(
-      take(1),
-      map((users) => users.find((u) => u.id === id))
-    );
+  getUserById(id: number): Observable<IUser> {
+    return this.http.get<IUser>(environment.baseApiUrl + '/users/' + id);
   }
 
   createUser(payload: IUser): void {
@@ -65,7 +62,7 @@ export class UserService {
   deleteUser(id: number): void {
     Swal.fire({
       title: '¿Estas seguro?',
-      text: 'Se borrará permanentemente de tu web',
+      text: 'Se borrará permanentemente',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

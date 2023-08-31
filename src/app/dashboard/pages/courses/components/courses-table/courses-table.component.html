@@ -30,6 +30,9 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let course">
+      <button [routerLink]="course.id" mat-icon-button color="primary">
+        <mat-icon>visibility</mat-icon>
+      </button>
       <button
         *ngIf="isAdmin$ | async"
         (click)="editCourse.emit(course)"

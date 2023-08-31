@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class StudentsTableComponent {
   public isAdmin$: Observable<boolean>;
-  public displayedColumns = ['id', 'nameSurname', 'dateRegister', 'actions'];
+  public displayedColumns = ['id', 'nameSurname', 'dni', 'actions'];
   constructor(private store: Store) {
     this.isAdmin$ = this.store.select(selectIsAdmin);
   }

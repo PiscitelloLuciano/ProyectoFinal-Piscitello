@@ -44,7 +44,7 @@ export class CoursesComponent {
   }
 
   onDeleteCourse(course: ICourses): void {
-    if (confirm(`¿Está seguro de eliminar a ${course.name}?`) && course.id) {
+    if (course.id) {
       this.serv.deleteCourse(course.id);
     }
   }

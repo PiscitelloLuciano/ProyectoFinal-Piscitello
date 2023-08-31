@@ -1,0 +1,31 @@
+<button mat-icon-button routerLink="..">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<h1 class="text-center">{{ student$?.name }} {{ student$?.surname }}</h1>
+<div class="grid justify-content-around mt-6">
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Descripción</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ student$?.description }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Dni</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ student$?.dni }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Fecha de registro</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ student$?.dateRegister }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Fecha de nacimiento</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ student$?.birthAge }}
+    </mat-card-content>
+  </mat-card>
+</div>

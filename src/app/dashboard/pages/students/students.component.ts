@@ -36,6 +36,9 @@ export class StudentsComponent {
               name: v.name,
               surname: v.surname,
               dateRegister: v.dateRegister,
+              description: v.description,
+              birthAge: v.birthAge,
+              dni: v.dni,
             });
           }
         },
@@ -43,7 +46,7 @@ export class StudentsComponent {
   }
 
   onDeleteStudent(student: IStudent): void {
-    if (confirm(`¿Está seguro de eliminar a ${student.name}?`) && student.id) {
+    if (student.id) {
       this.serv.deleteStudent(student.id);
     }
   }

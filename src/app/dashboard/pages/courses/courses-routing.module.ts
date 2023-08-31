@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CoursesComponent } from './courses.component';
+import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
 
 @NgModule({
   imports: [
@@ -8,6 +9,10 @@ import { CoursesComponent } from './courses.component';
       {
         path: '',
         component: CoursesComponent,
+      },
+      {
+        path: ':id',
+        component: CoursesDetailComponent,
       },
     ]),
   ],

@@ -1,0 +1,25 @@
+<button mat-icon-button routerLink="..">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<h1 class="text-center">{{ user$?.name }} {{ user$?.surname }}</h1>
+<div class="grid justify-content-around mt-6">
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Email</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ user$?.email }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Rol</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ user$?.rol | uppercase }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="w-14rem p-3">
+    <mat-card-title class="text-center">Contraseña</mat-card-title>
+    <mat-card-content class="text-center">
+      {{ user$?.password }}
+    </mat-card-content>
+  </mat-card>
+</div>

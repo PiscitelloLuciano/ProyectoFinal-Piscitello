@@ -22,11 +22,29 @@ export class StudentsDialogComponent {
     Validators.minLength(10),
     Validators.maxLength(10),
   ]);
+  descriptionControl = new FormControl<string>('', [
+    Validators.required,
+    Validators.minLength(15),
+    Validators.maxLength(256),
+  ]);
+  birthAgeControl = new FormControl<string>('', [
+    Validators.required,
+    Validators.minLength(10),
+    Validators.maxLength(10),
+  ]);
+  dniControl = new FormControl<number | null>(null, [
+    Validators.required,
+    Validators.min(1000000),
+    Validators.max(99999999),
+  ]);
 
   studentForm = new FormGroup({
     name: this.nameControl,
     surname: this.surnameControl,
     dateRegister: this.dateRegisterControl,
+    description: this.descriptionControl,
+    birthAge: this.birthAgeControl,
+    dni: this.dniControl,
   });
 
   constructor(
@@ -37,6 +55,9 @@ export class StudentsDialogComponent {
       this.nameControl.setValue(this.data.name);
       this.surnameControl.setValue(this.data.surname);
       this.dateRegisterControl.setValue(this.data.dateRegister);
+      this.descriptionControl.setValue(this.data.description);
+      this.birthAgeControl.setValue(this.data.birthAge);
+      this.dniControl.setValue(this.data.dni);
     }
   }
 

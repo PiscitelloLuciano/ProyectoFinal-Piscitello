@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NombreApellidoPipe } from '../../../core/pipes/nombre-apellido.pipe';
 import { UsersRoutingModule } from './users-routing.module';
 import { MatTableModule } from '@angular/material/table';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
     UsersTableComponent,
     UsersDialogComponent,
     NombreApellidoPipe,
+    UserDetailComponent,
   ],
   imports: [CommonModule, SharedModule, MatTableModule, UsersRoutingModule],
   exports: [UsersComponent],

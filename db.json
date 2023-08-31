@@ -26,52 +26,44 @@
       "password": "admin123",
       "token": "rSz0N8BpYJtl2EntBF",
       "id": 5
+    },
+    {
+      "name": "Fede",
+      "surname": "Castro",
+      "email": "FedeC@gmail.com",
+      "password": "fedec123",
+      "rol": "user",
+      "token": "p021CpwWbwlpoDMifL",
+      "id": 6
     }
   ],
   "students": [
     {
-      "name": "Juan Pablo",
-      "surname": "Gonzalez",
-      "dateRegister": "2005-02-21",
+      "name": "Josias",
+      "surname": "Ferme",
+      "dateRegister": "2023-08-29",
+      "description": "Muy intelectual y responsable",
+      "birthAge": "2004-05-06",
+      "dni": 44235878,
       "id": 1
     },
     {
-      "name": "Gonzalo",
-      "surname": "Gazir",
-      "dateRegister": "2000-10-29",
+      "name": "Brisa Celeste",
+      "surname": "Burgos",
+      "dateRegister": "2023-08-30",
+      "description": "Muy empatica con mis compañeros",
+      "birthAge": "2004-05-19",
+      "dni": 45896681,
       "id": 2
-    },
-    {
-      "name": "Juana",
-      "surname": "Jey",
-      "dateRegister": "2010-04-30",
-      "id": 3
-    }
-  ],
-  "classes": [
-    {
-      "id": 1,
-      "name": "RXJS",
-      "description": "Pico más alto de dificultad"
-    },
-    {
-      "id": 2,
-      "name": "Routing",
-      "description": "Conecta tu aplicación por medio de URLs"
-    },
-    {
-      "id": 3,
-      "name": "Form",
-      "description": "Formularios Reactivos con Angular"
     }
   ],
   "courses": [
     {
-      "id": 1,
       "name": "Angular",
       "description": "Curso de Angular",
       "startDate": "2023/09/01",
-      "endDate": "2023/11/01"
+      "endDate": "2023/11/01",
+      "id": 1
     },
     {
       "id": 2,
@@ -79,6 +71,13 @@
       "description": "Curso de React",
       "startDate": "2023/09/01",
       "endDate": "2023/11/01"
+    }
+  ],
+  "inscriptions": [
+    {
+      "studentId": 1,
+      "courseId": 1,
+      "id": 1
     }
   ]
 }
