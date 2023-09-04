@@ -1,29 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IInscriptionWithStudentAndCourse } from '../../models';
 import { Store } from '@ngrx/store';
-import { IUser } from '../../../users/models';
-import {
-  selectAuthUser,
-  selectIsAdmin,
-} from 'src/app/store/auth/auth.selector';
-import { Observable } from 'rxjs';
+import { selectIsAdmin } from 'src/app/store/auth/auth.selector';
+import { Observable, of } from 'rxjs';
 import { InscriptionsActions } from '../../store/inscriptions.actions';
+import { selectInscriptions } from '../../store/inscriptions.selectors';
+import { MatTableDataSource } from '@angular/material/table';
+import { InscriptionsService } from '../../services/inscriptions.service';
 
 @Component({
   selector: 'app-inscriptions-table',
   templateUrl: './inscriptions-table.component.html',
   styleUrls: ['./inscriptions-table.component.scss'],
 })
-export class InscriptionsTableComponent {
+export class InscriptionsTableComponent implements OnInit {
   public displayedColumns = ['id', 'student', 'course', 'actions'];
-  public user$: Observable<IUser | null>;
   public isAdmin$: Observable<boolean>;
-  @Input()
-  dataSource: IInscriptionWithStudentAndCourse[] = [];
+  public dataTable = new MatTableDataSource<IInscriptionWithStudentAndCourse>();
 
-  constructor(private store: Store) {
-    this.user$ = this.store.select(selectAuthUser);
+  constructor(private store: Store, private serv: InscriptionsService) {
     this.isAdmin$ = this.store.select(selectIsAdmin);
+  }
+  ngOnInit(): void {
+    this.store.select(selectInscriptions).subscribe((inscriptions) => {
+      this.dataTable.data = inscriptions;
+      console.log(this.dataTable.data);
+    });
+    this.store.dispatch(InscriptionsActions.loadInscriptions());
   }
 
   deleteInscription(id: number) {

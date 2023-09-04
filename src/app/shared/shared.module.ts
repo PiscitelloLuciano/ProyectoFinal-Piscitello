@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -26,6 +28,8 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatSelectModule,
     RouterModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class SharedModule {}

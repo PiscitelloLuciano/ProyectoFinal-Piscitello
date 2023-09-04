@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
+import { StringifyPipe } from 'src/app/core/pipes/stringify.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.co
     CoursesDialogComponent,
     CoursesTableComponent,
     CoursesDetailComponent,
+    StringifyPipe,
   ],
   imports: [CommonModule, SharedModule, MatTableModule, CoursesRoutingModule],
 })

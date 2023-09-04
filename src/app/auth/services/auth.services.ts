@@ -89,6 +89,7 @@ export class AuthService {
       .subscribe({
         next: (arrayActualizado) => {
           this.loadUsers();
+          this.notifier.showSuccess('Usuario registrado con exito');
         },
       });
   }

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { InscriptionsActions } from './store/inscriptions.actions';
 import { Observable } from 'rxjs';
-import { IInscription, IInscriptionWithStudentAndCourse } from './models';
+import { IInscriptionWithStudentAndCourse } from './models';
 import {
   selectInscriptions,
   selectInscriptionsState,
@@ -15,21 +14,10 @@ import { InscriptionDialogComponent } from './components/inscription-dialog/insc
   templateUrl: './inscriptions.component.html',
   styleUrls: ['./inscriptions.component.scss'],
 })
-export class InscriptionsComponent implements OnInit {
-  inscriptions$: Observable<IInscriptionWithStudentAndCourse[]>;
-  constructor(private store: Store, private matDialog: MatDialog) {
-    this.inscriptions$ = this.store.select(selectInscriptions);
-  }
-
-  ngOnInit(): void {
-    this.store.dispatch(InscriptionsActions.loadInscriptions());
-  }
+export class InscriptionsComponent {
+  constructor(private store: Store, private matDialog: MatDialog) {}
 
   onAdd(): void {
     this.matDialog.open(InscriptionDialogComponent);
-  }
-
-  onDeleteInscription(id: number) {
-    return this.store.dispatch(InscriptionsActions.deleteInscription({ id }));
   }
 }

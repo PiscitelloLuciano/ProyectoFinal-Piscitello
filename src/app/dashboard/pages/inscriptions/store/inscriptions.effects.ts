@@ -87,7 +87,7 @@ export class InscriptionsEffects {
       ofType(InscriptionsActions.deleteInscription),
 
       concatMap((action) =>
-        this.servInscription.deleteInscription(action.id).pipe(
+        this.servInscription.deleteInscriptionWithSweetalert(action.id).pipe(
           map(() =>
             InscriptionsActions.deleteInscriptionSuccess({ id: action.id })
           ),

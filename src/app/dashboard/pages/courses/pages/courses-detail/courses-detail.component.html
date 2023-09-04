@@ -13,13 +13,13 @@
   <mat-card class="w-14rem p-3">
     <mat-card-title class="text-center">Fecha de inicio</mat-card-title>
     <mat-card-content class="text-center">
-      {{ course$?.startDate | uppercase }}
+      {{ course$?.startDate | date : "dd/MM/yyyy" }}
     </mat-card-content>
   </mat-card>
   <mat-card class="w-14rem p-3">
     <mat-card-title class="text-center">Fecha final</mat-card-title>
     <mat-card-content class="text-center">
-      {{ course$?.endDate | uppercase }}
+      {{ course$?.endDate | date : "dd/MM/yyyy" }}
     </mat-card-content>
   </mat-card>
 </div>

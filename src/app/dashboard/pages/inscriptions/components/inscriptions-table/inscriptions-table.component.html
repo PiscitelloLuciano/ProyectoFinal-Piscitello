@@ -1,21 +1,21 @@
-<table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+<table mat-table class="mat-elevation-z8" [dataSource]="dataTable.data">
   <!-- Id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let inscriptions">{{ inscriptions.id }}</td>
+    <td mat-cell *matCellDef="let inscriptions">{{ inscriptions?.id }}</td>
   </ng-container>
   <!-- Student Column -->
   <ng-container matColumnDef="student">
     <th mat-header-cell *matHeaderCellDef>Estudiante</th>
     <td mat-cell *matCellDef="let inscriptions">
-      {{ inscriptions.student.name + " " + inscriptions.student.surname }}
+      {{ inscriptions?.student.name + " " + inscriptions?.student.surname }}
     </td>
   </ng-container>
   <!-- Course Column -->
   <ng-container matColumnDef="course">
     <th mat-header-cell *matHeaderCellDef>Curso</th>
     <td mat-cell *matCellDef="let inscriptions">
-      {{ inscriptions.course.name }}
+      {{ inscriptions?.course.name }}
     </td>
   </ng-container>
   <!-- Actions Column -->
@@ -23,19 +23,7 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let inscriptions">
       <button
-        (click)="deleteInscription(inscriptions.id)"
-        *ngIf="inscriptions.student.name === (user$ | async)?.name"
-        mat-icon-button
-        color="warn"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button
-        (click)="deleteInscription(inscriptions.id)"
-        *ngIf="
-          (isAdmin$ | async) &&
-          inscriptions.student.name !== (user$ | async)?.name
-        "
+        (click)="deleteInscription(inscriptions?.id)"
         mat-icon-button
         color="warn"
       >

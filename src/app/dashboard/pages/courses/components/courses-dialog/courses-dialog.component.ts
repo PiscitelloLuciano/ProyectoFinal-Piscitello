@@ -17,15 +17,13 @@ export class CoursesDialogComponent {
     Validators.required,
     Validators.minLength(15),
   ]);
-  startDateControl = new FormControl<string>('', [
+  startDateControl = new FormControl<Date | null>(null, [
     Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(10),
+    Validators.minLength(8),
   ]);
-  endDateControl = new FormControl<string>('', [
+  endDateControl = new FormControl<Date | null>(null, [
     Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(10),
+    Validators.minLength(8),
   ]);
 
   courseForm = new FormGroup({

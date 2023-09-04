@@ -19,8 +19,7 @@ export class StudentsDialogComponent {
   ]);
   dateRegisterControl = new FormControl<string>('', [
     Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(10),
+    Validators.minLength(8),
   ]);
   descriptionControl = new FormControl<string>('', [
     Validators.required,
@@ -29,8 +28,7 @@ export class StudentsDialogComponent {
   ]);
   birthAgeControl = new FormControl<string>('', [
     Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(10),
+    Validators.minLength(8),
   ]);
   dniControl = new FormControl<number | null>(null, [
     Validators.required,

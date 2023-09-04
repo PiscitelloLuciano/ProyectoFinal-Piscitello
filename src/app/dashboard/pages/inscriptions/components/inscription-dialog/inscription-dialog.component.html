@@ -10,6 +10,9 @@
           >{{ student.name + " " + student.surname }}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="studentIdControl.hasError('required')">
+        Este campo es requerido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
@@ -21,6 +24,9 @@
           >{{ course.name }}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="courseIdControl.hasError('required')">
+        Este campo es requerido
+      </mat-error>
     </mat-form-field>
   </form>
   <div mat-dialog-actions class="flex justify-content-end mr-3">

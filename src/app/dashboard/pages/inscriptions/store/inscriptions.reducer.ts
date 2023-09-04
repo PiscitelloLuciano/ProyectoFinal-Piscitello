@@ -98,7 +98,7 @@ export const reducer = createReducer(
 
   on(InscriptionsActions.deleteInscription, (state) => ({
     ...state,
-    loading: true,
+    loadingInscriptions: true,
   })),
 
   on(InscriptionsActions.deleteInscriptionSuccess, (state, { id }) => {
@@ -114,7 +114,7 @@ export const reducer = createReducer(
   on(InscriptionsActions.deleteInscriptionFailure, (state, { error }) => ({
     ...state,
     error,
-    loading: false,
+    loadingInscriptions: false,
   }))
 );
 

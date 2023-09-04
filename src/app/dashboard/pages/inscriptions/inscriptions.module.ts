@@ -11,7 +11,11 @@ import { InscriptionsTableComponent } from './components/inscriptions-table/insc
 import { InscriptionDialogComponent } from './components/inscription-dialog/inscription-dialog.component';
 
 @NgModule({
-  declarations: [InscriptionsComponent, InscriptionsTableComponent, InscriptionDialogComponent],
+  declarations: [
+    InscriptionsComponent,
+    InscriptionsTableComponent,
+    InscriptionDialogComponent,
+  ],
   imports: [
     CommonModule,
     InscriptionsRoutingModule,

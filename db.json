@@ -1,40 +1,67 @@
 {
   "users": [
     {
-      "name": "user",
-      "surname": "user",
+      "name": "Admin",
+      "surname": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "token": "nkfq3jRb2OuM6pwr8c",
+      "rol": "admin",
+      "id": 1
+    },
+    {
+      "name": "User",
+      "surname": "User",
       "email": "user@gmail.com",
       "password": "user123",
-      "token": "wU84z1hclXzqcRMu0r",
+      "token": "fz9v63qeISXkrhDbYP",
+      "rol": "user",
+      "id": 2
+    },
+    {
+      "name": "Rodrigo",
+      "surname": "Gonz",
+      "email": "rodrigogonz@gmail.com",
+      "password": "rgonz123",
+      "token": "ANtMgLV71kytHw90qL",
       "rol": "user",
       "id": 3
     },
     {
-      "name": "Brisa Celeste",
-      "surname": "Burgos",
-      "email": "brisaburgos@gmail.com",
-      "password": "oshiteamo",
-      "token": "JR97bnTL6Y3ZBNyoJW",
-      "rol": "admin",
+      "name": "Josias",
+      "surname": "Ferme",
+      "email": "josiasferme@gmail.com",
+      "password": "jferme123",
+      "token": "g8NErLkGi1hzS1JMod",
+      "rol": "user",
       "id": 4
     },
     {
-      "name": "admin",
-      "surname": "admin",
-      "email": "admin@gmail.com",
-      "rol": "admin",
-      "password": "admin123",
-      "token": "rSz0N8BpYJtl2EntBF",
+      "name": "Milagros",
+      "surname": "Zulia",
+      "email": "milagroszulia@gmail.com",
+      "password": "mzulia123",
+      "token": "Ors3l7PaAnORfWEML3",
+      "rol": "user",
       "id": 5
     },
     {
-      "name": "Fede",
-      "surname": "Castro",
-      "email": "FedeC@gmail.com",
-      "password": "fedec123",
+      "name": "Gonzalo",
+      "surname": "Ovando",
+      "email": "gonzaloovando@gmail.com",
+      "password": "govando123",
       "rol": "user",
-      "token": "p021CpwWbwlpoDMifL",
+      "token": "ZuDY9O38LUIyIWLWOC",
       "id": 6
+    },
+    {
+      "name": "Luciano",
+      "surname": "Piscitello",
+      "email": "lucianopiscitello8@gmail.com",
+      "password": "lpiscitello123",
+      "token": "DPjEZa9fKgVVzOdkwv",
+      "rol": "admin",
+      "id": 7
     }
   ],
   "students": [
@@ -48,29 +75,77 @@
       "id": 1
     },
     {
-      "name": "Brisa Celeste",
-      "surname": "Burgos",
-      "dateRegister": "2023-08-30",
-      "description": "Muy empatica con mis compañeros",
-      "birthAge": "2004-05-19",
-      "dni": 45896681,
+      "name": "Carlos",
+      "surname": "Depetris",
+      "dateRegister": "2023-08-24T03:00:00.000Z",
+      "description": "Responsable y educado",
+      "birthAge": "2004-01-14T03:00:00.000Z",
+      "dni": 45088478,
       "id": 2
+    },
+    {
+      "name": "Julio",
+      "surname": "Villanueva",
+      "dateRegister": "2023-08-20T03:00:00.000Z",
+      "description": "Muy creativo e ingenioso",
+      "birthAge": "2001-03-23T03:00:00.000Z",
+      "dni": 42889456,
+      "id": 3
+    },
+    {
+      "name": "Milagros",
+      "surname": "Zulia",
+      "dateRegister": "2023-08-31T03:00:00.000Z",
+      "description": "Me gusta participar en las clases",
+      "birthAge": "2005-08-11T03:00:00.000Z",
+      "dni": 46889237,
+      "id": 4
+    },
+    {
+      "name": "Rodrigo",
+      "surname": "Gonz",
+      "dateRegister": "2023-09-01T03:00:00.000Z",
+      "description": "Me entusiasma aprender",
+      "birthAge": "2003-12-23T03:00:00.000Z",
+      "dni": 45668798,
+      "id": 5
     }
   ],
   "courses": [
     {
       "name": "Angular",
       "description": "Curso de Angular",
-      "startDate": "2023/09/01",
-      "endDate": "2023/11/01",
+      "startDate": "2023-09-10T03:00:00.000Z",
+      "endDate": "2023-12-12T03:00:00.000Z",
       "id": 1
     },
     {
-      "id": 2,
       "name": "React",
-      "description": "Curso de React",
-      "startDate": "2023/09/01",
-      "endDate": "2023/11/01"
+      "description": "Curso de React!",
+      "startDate": "2024-02-14T03:00:00.000Z",
+      "endDate": "2024-07-08T03:00:00.000Z",
+      "id": 2
+    },
+    {
+      "name": "Javascript",
+      "description": "Aprenderas todo lo necesario para olvidarte de las paginas web estáticas",
+      "startDate": "2023-09-29T03:00:00.000Z",
+      "endDate": "2023-11-25T03:00:00.000Z",
+      "id": 5
+    },
+    {
+      "name": "Java",
+      "description": "Java para principiantes, todo lo que necesitas saber para introducirte en el mundo del BackEnd",
+      "startDate": "2024-03-13T03:00:00.000Z",
+      "endDate": "2024-07-07T03:00:00.000Z",
+      "id": 6
+    },
+    {
+      "name": "Python",
+      "description": "El lenguaje del mañana! Domina de principio a fin el lenguaje más completo de programación.",
+      "startDate": "2024-02-05T03:00:00.000Z",
+      "endDate": "2024-11-22T03:00:00.000Z",
+      "id": 7
     }
   ],
   "inscriptions": [
@@ -78,6 +153,31 @@
       "studentId": 1,
       "courseId": 1,
       "id": 1
+    },
+    {
+      "studentId": 3,
+      "courseId": 5,
+      "id": 3
+    },
+    {
+      "studentId": 5,
+      "courseId": 7,
+      "id": 4
+    },
+    {
+      "studentId": 4,
+      "courseId": 6,
+      "id": 5
+    },
+    {
+      "studentId": 1,
+      "courseId": 7,
+      "id": 6
+    },
+    {
+      "studentId": 2,
+      "courseId": 1,
+      "id": 7
     }
   ]
 }

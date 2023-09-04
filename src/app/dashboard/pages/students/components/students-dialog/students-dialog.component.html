@@ -69,20 +69,20 @@
         <mat-label>Fecha de registro</mat-label>
         <input
           matInput
-          type="date"
+          [matDatepicker]="pickerDateRegister"
           name="dateRegister"
           formControlName="dateRegister"
         />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerDateRegister"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateRegister></mat-datepicker>
         <mat-error *ngIf="dateRegisterControl.hasError('required')">
           Este campo es requerido
         </mat-error>
-        <mat-error
-          *ngIf="
-            dateRegisterControl.hasError('minlength') ||
-            dateRegisterControl.hasError('maxlength')
-          "
-        >
-          Este campo solo puede contener 10 caracteres.
+        <mat-error *ngIf="dateRegisterControl.hasError('minlength')">
+          Este campo solo puede contener entre 8 y 10 caracteres.
         </mat-error>
       </mat-form-field>
     </div>
@@ -92,20 +92,20 @@
         <mat-label>Fecha de nacimiento</mat-label>
         <input
           matInput
-          type="date"
+          [matDatepicker]="pickerBirthDay"
           name="birthAge"
           formControlName="birthAge"
         />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerBirthDay"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerBirthDay></mat-datepicker>
         <mat-error *ngIf="birthAgeControl.hasError('required')">
           Este campo es requerido
         </mat-error>
-        <mat-error
-          *ngIf="
-            birthAgeControl.hasError('minlength') ||
-            birthAgeControl.hasError('maxlength')
-          "
-        >
-          Este campo solo puede contener 10 caracteres.
+        <mat-error *ngIf="birthAgeControl.hasError('minlength')">
+          Este campo solo puede contener entre 8 y 10 caracteres.
         </mat-error>
       </mat-form-field>
     </div>

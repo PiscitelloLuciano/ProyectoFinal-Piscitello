@@ -19,13 +19,13 @@
   <mat-card class="w-14rem p-3">
     <mat-card-title class="text-center">Fecha de registro</mat-card-title>
     <mat-card-content class="text-center">
-      {{ student$?.dateRegister }}
+      {{ student$?.dateRegister | date : "dd/MM/yyyy" }}
     </mat-card-content>
   </mat-card>
   <mat-card class="w-14rem p-3">
     <mat-card-title class="text-center">Fecha de nacimiento</mat-card-title>
     <mat-card-content class="text-center">
-      {{ student$?.birthAge }}
+      {{ student$?.birthAge | date : "dd/MM/yyyy" }}
     </mat-card-content>
   </mat-card>
 </div>
